@@ -1,0 +1,84 @@
+# System Tuning Cheat Sheet – For Those Who Optimize Before They Ask Why
+
+# CPU & Performance
+$ lscpu                          # CPU info
+$ top / htop                     # Live system monitor
+$ btop                           # Graphical system load
+$ taskset -c 0 command           # Pin process to CPU
+$ nice -n 10 ./job.sh            # Lower priority
+$ renice -n 15 -p 1234           # Change priority of running PID
+$ cpupower frequency-info        # CPU freq policy (root)
+
+# Memory
+$ free -h                        # Memory usage
+$ vmstat 1                       # Memory stats
+$ cat /proc/meminfo              # Detailed memory info
+$ smem -krt                      # Per-process memory breakdown
+
+# I/O & Disk
+$ iotop                          # Monitor disk I/O
+$ iostat                         # CPU & device stats
+$ df -h                          # Disk usage
+$ du -sh *                       # Folder sizes
+$ dstat                          # All-in-one stats tool
+$ lsblk                          # Block device layout
+$ hdparm -Tt /dev/sda            # Disk read speed
+
+# Services & Startup
+$ systemctl list-units --type=service
+$ systemctl enable foo.service   # Enable at boot
+$ systemctl disable foo.service  # Disable at boot
+$ systemctl status foo.service   # Show status
+$ systemd-analyze blame          # Boot time per service
+$ systemd-analyze critical-chain # Boot dependency timings
+
+# Logs & Debugging
+$ journalctl -xe                 # System logs with errors
+$ journalctl -b -1               # Logs from previous boot
+$ dmesg                          # Kernel messages
+$ dmesg -T | grep error          # Timestamped errors
+
+# Kernel Params (sysctl)
+$ sysctl -a                      # List all settings
+$ sysctl net.ipv4.ip_forward     # Query param
+$ sudo sysctl -w param=value     # Set param live
+$ echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+$ sudo sysctl -p                 # Reload settings
+
+# Ulimits
+$ ulimit -a                      # Current limits
+$ ulimit -n 65535                # Max open files (soft)
+$ sudo nano /etc/security/limits.conf
+
+# Swap Management
+$ swapon -s                      # Show swap
+$ sudo swapoff -a                # Disable swap
+$ sudo fallocate -l 2G /swapfile
+$ sudo chmod 600 /swapfile
+$ sudo mkswap /swapfile
+$ sudo swapon /swapfile
+
+# Power Management
+$ tlp-stat                       # Laptop power status (TLP)
+$ powertop                       # Show power usage
+$ cpufreq-info                   # CPU frequency control
+
+# Networking Tuning
+$ ss -s                          # Socket summary
+$ netstat -s                     # Protocol stats
+$ sudo ethtool eth0              # NIC tuning
+$ sudo sysctl net.core.rmem_max=26214400
+$ sudo sysctl net.core.wmem_max=26214400
+
+# Filesystem Tweaks
+$ mount | column -t              # Mounted FS
+$ tune2fs -l /dev/sda1           # ext4 options
+$ sudo mount -o remount,noatime /
+$ sudo fstrim -v /               # Trim SSD
+
+# Scheduler Tweaks
+$ cat /sys/block/sda/queue/scheduler
+$ echo noop | sudo tee /sys/block/sda/queue/scheduler
+$ ioprio set -c2 -n7 -p PID      # Set I/O priority
+
+> Tuning is the final form of terminal control — where you bend the machine, not the other way around.

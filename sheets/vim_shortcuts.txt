@@ -1,0 +1,108 @@
+# Vim Shortcuts Cheat Sheet - For Modal Masters
+
+# Modes
+$ i                # Insert mode
+$ <Esc>            # Return to normal mode
+$ :                # Command-line mode
+$ v                # Visual mode
+$ V                # Visual line mode
+$ Ctrl+v           # Visual block mode
+
+# Basic Movement
+$ h j k l          # Left, down, up, right
+$ w                # Next word
+$ b                # Previous word
+$ e                # End of word
+$ 0                # Start of line
+$ ^                # First non-whitespace
+$ $                # End of line
+$ gg               # Go to top
+$ G                # Go to bottom
+$ nG               # Go to line n
+
+# Scrolling
+$ Ctrl+d           # Half-page down
+$ Ctrl+u           # Half-page up
+$ Ctrl+f           # Full-page down
+$ Ctrl+b           # Full-page up
+
+# Inserting Text
+$ i                # Insert before cursor
+$ I                # Insert at line start
+$ a                # Append after cursor
+$ A                # Append at line end
+$ o                # Open line below
+$ O                # Open line above
+
+# Editing
+$ r<char>          # Replace character
+$ R                # Enter replace mode
+$ x                # Delete character
+$ dd               # Delete line
+$ dw               # Delete word
+$ d$               # Delete to end of line
+$ d0               # Delete to start of line
+$ D                # Delete to EOL (alias for d$)
+$ u                # Undo
+$ Ctrl+r           # Redo
+$ .                # Repeat last command
+
+# Copy/Paste
+$ yy               # Yank line
+$ yw               # Yank word
+$ y$               # Yank to EOL
+$ p                # Paste after
+$ P                # Paste before
+
+# Searching
+$ /pattern         # Forward search
+$ ?pattern         # Backward search
+$ n                # Next match
+$ N                # Previous match
+
+# Replacing
+$ :%s/foo/bar/g    # Replace all foo with bar
+$ :%s/foo/bar/gc   # Confirm each replace
+$ :s/foo/bar/g     # Replace on current line
+
+# Navigation
+$ %                # Jump between matching brackets
+$ *                # Search word under cursor forward
+$ #                # Search word under cursor backward
+$ gd               # Go to local declaration
+$ gD               # Go to global declaration
+
+# Buffers & Windows
+$ :e file          # Open file
+$ :bn / :bp        # Next/prev buffer
+$ :bd              # Delete buffer
+$ :sp file         # Horizontal split
+$ :vsp file        # Vertical split
+$ Ctrl+w w         # Switch window
+$ Ctrl+w q         # Close window
+$ Ctrl+w =         # Equal size windows
+
+# Macros
+$ q<char>          # Start macro recording
+$ @<char>          # Play macro
+$ @@               # Repeat last macro
+
+# Marks
+$ m<char>          # Set mark
+$ '<char>          # Go to mark
+
+# File Operations
+$ :w               # Save
+$ :wq              # Save and quit
+$ :q               # Quit
+$ :q!              # Quit without saving
+$ :x               # Save and quit (like :wq)
+
+# Misc
+$ :noh             # Remove highlights
+$ :set nu          # Show line numbers
+$ :set relativenumber  # Relative numbers
+$ :syntax on       # Enable syntax
+$ :set paste       # Paste-friendly mode
+
+> Vim isn’t a text editor. It’s a cult you join one keystroke at a time.

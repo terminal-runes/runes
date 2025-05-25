@@ -1,0 +1,74 @@
+# SSH Tricks Cheat Sheet — For Terminal Teleporters
+
+# Basics
+$ ssh user@host                    # Basic login
+$ ssh -p 2222 user@host           # Use non-standard port
+$ ssh user@ip -i key.pem          # Use specific key
+$ ssh-copy-id user@host           # Copy key for passwordless login
+
+# Key Management
+$ ssh-keygen                      # Generate new key pair
+$ ssh-add ~/.ssh/id_rsa          # Add key to agent
+$ eval $(ssh-agent)              # Start SSH agent
+$ ssh-add -l                     # List loaded keys
+
+# Config File (~/.ssh/config)
+Host mybox
+    HostName 192.168.1.42
+    User hiro
+    Port 2222
+    IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
+
+# Multiplexing
+Host fastbox
+    HostName example.com
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h:%p
+    ControlPersist 10m
+
+# Port Forwarding
+$ ssh -L 8080:localhost:80 user@remote      # Local → Remote
+$ ssh -R 2022:localhost:22 user@remote      # Remote → Local
+$ ssh -D 1080 user@proxy                    # Dynamic SOCKS proxy
+
+# X Forwarding
+$ ssh -X user@host                 # Run GUI apps remotely
+$ ssh -Y user@host                 # Trusted X forwarding
+
+# Tunneling
+$ ssh -N -L 3306:dbhost:3306 user@jumpbox   # Tunnel DB over SSH
+
+# Jump Hosts
+$ ssh -J user@jump user@dest       # Jump via host
+$ ssh -o ProxyJump=user@jump dest  # Same, via config
+
+# Copying Files
+$ scp file user@host:/path         # Copy to remote
+$ scp user@host:/file .            # Copy from remote
+$ rsync -avz -e ssh dir user@host: # rsync over ssh
+
+# Remote Commands
+$ ssh user@host "uptime"            # Run command remotely
+$ ssh user@host -t "bash -l"        # Interactive login shell
+
+# Hardening
+$ sudo ufw allow OpenSSH           # Allow SSH in firewall
+$ sudo systemctl status ssh       # Check SSH service
+$ sudo nano /etc/ssh/sshd_config  # Config file
+
+# Shortcuts
+$ alias sshprod='ssh user@prod'   # Shortcut alias
+$ ssh-keyscan host >> known_hosts # Pre-approve key
+
+# Fun & Utility
+$ ssh user@host 'cava'            # Audio viz over SSH
+$ ssh user@host 'neofetch'        # Remote system info
+$ ssh -T git@github.com           # Test GitHub auth
+
+# Self-Host Kung-Fu
+$ sshfs user@host:/dir ~/mnt      # Mount remote over SSH
+$ fusermount -u ~/mnt             # Unmount
+$ autossh -M 0 user@host          # Auto-reconnect SSH tunnel
+
+> SSH isn’t just remote access — it’s your command line wormhole.

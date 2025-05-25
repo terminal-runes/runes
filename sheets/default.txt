@@ -1,0 +1,103 @@
+# runes - default.txt
+# A curated blend of practical Linux terminal commands
+
+# File operations
+$ ls -lh                        # Human-readable file list
+$ cp -r src/ dst/               # Copy directory recursively
+$ mv old.txt new.txt            # Rename/move file
+$ rm -rf dir/                   # Remove directory forcefully
+$ mkdir -p dir/subdir           # Create nested directories
+$ touch file.txt                # Create empty file
+
+# Navigation
+$ pwd                           # Show current path
+$ cd ~/Downloads                # Change to Downloads
+$ cd -                          # Go to previous directory
+$ tree                          # Show folder structure
+
+# Permissions & Ownership
+$ chmod +x script.sh            # Make script executable
+$ chown user:group file         # Change owner and group
+$ stat file.txt                 # File metadata
+
+# Finding things
+$ find . -type f -iname "*.jpg" # Find jpgs (case-insensitive)
+$ locate file.conf              # Fast file search
+$ which python3                 # Locate binary in PATH
+$ type -a ls                    # Show all 'ls' definitions
+
+# System & Hardware Info
+$ uname -r                      # Kernel version
+$ uptime -p                     # Pretty uptime
+$ hostnamectl                   # System hostname + metadata
+$ lscpu                         # CPU details
+$ free -h                       # Memory usage
+$ df -h                         # Disk usage
+$ du -sh *                      # Size of current dir contents
+
+# Package tools (generalized)
+$ sudo apt update               # Debian/Ubuntu
+$ sudo dnf upgrade              # Fedora
+$ sudo pacman -Syu              # Arch
+$ brew install htop             # macOS
+
+# Process and Resource Use
+$ ps aux | grep firefox         # Filter processes
+$ top                           # Process monitor
+$ htop                          # Better top (if installed)
+$ killall firefox               # Kill by name
+
+# Networking essentials
+$ ip a                          # IP address
+$ ip r                          # Routing table
+$ ping -c 4 8.8.8.8             # Ping test
+$ curl ifconfig.me              # Show public IP
+$ ss -tuln                      # Show open ports
+$ dig google.com +short         # DNS resolution
+
+# Disk & Mounting
+$ mount | column -t             # Show mounted devices
+$ lsblk                         # Block devices
+$ df -Th                        # Human readable + FS types
+$ sudo mount /dev/sdX1 /mnt     # Mount a drive
+
+# Archiving & Compression
+$ tar -czvf file.tar.gz dir/    # Create gzipped tarball
+$ tar -xzvf file.tar.gz         # Extract tarball
+$ zip -r archive.zip dir/       # Zip a folder
+$ unzip archive.zip             # Unzip
+
+# Text editing & viewing
+$ nano file.txt                 # Simple editor
+$ vim file.txt                  # Vim editor
+$ cat file.txt                  # View file
+$ less file.txt                 # Paged viewing
+$ tail -n 100 -f log.txt        # Follow last 100 lines
+
+# Searching text
+$ grep -rnw . -e "TODO"          # Recursively search for TODO
+$ grep -i error file.log        # Case-insensitive grep
+
+# User & Group basics
+$ whoami                        # Current user
+$ id                            # UID, groups
+$ groups                        # Group membership
+$ adduser newuser               # Add user
+$ passwd user                   # Change password
+
+# Services & Logs (systemd)
+$ systemctl status nginx        # Check service
+$ sudo systemctl restart sshd   # Restart service
+$ journalctl -xe                # Show recent logs
+$ dmesg | tail                  # Kernel messages
+
+# SSH quick use
+$ ssh user@host                 # Remote login
+$ scp file user@host:/path      # Copy to remote
+$ ssh-keygen -t ed25519         # Generate SSH key
+
+# Cheats for cheats
+$ tldr tar                      # Get simplified cheat sheet
+$ man find                      # Full manual page
+
+> Pro tip: Bash is a toolbelt, not a hammer. Runes help you wield it.

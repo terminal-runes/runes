@@ -1,0 +1,91 @@
+# CLI Tools Cheat Sheet – Modern Command-Line Arsenal
+
+# bat (cat with wings)
+$ bat file.txt                   # Pretty-print file with syntax
+$ bat --paging=never file        # Disable pager
+$ bat -n                         # Show line numbers
+
+# exa (ls on steroids)
+$ exa                            # Basic listing
+$ exa -l                         # Long view
+$ exa -la                        # Long + hidden
+$ exa -T                         # Tree view
+$ exa -s new                     # Sort by newest
+
+# fd (find replacement)
+$ fd foo                         # Find files named foo
+$ fd -e jpg                      # Find all .jpg files
+$ fd foo ~/Pictures              # Scoped search
+
+# rg (ripgrep — better grep)
+$ rg TODO                        # Recursively search TODO
+$ rg "def "                      # Function definitions
+$ rg -n "error" log.txt          # Show line numbers
+
+# fzf (fuzzy finder)
+$ fzf                            # Fuzzy select from stdin
+$ history | fzf                  # Search command history
+$ kill -9 $(ps aux | fzf)        # Fuzzy kill
+
+# tldr (simplified man pages)
+$ tldr tar                       # Short summary of tar
+$ tldr curl                      # Most common curl examples
+
+# jq (JSON slicer)
+$ jq . data.json                 # Pretty print JSON
+$ jq '.users[].name' data.json   # Extract specific field
+$ curl ... | jq '.'              # Pipe to parse JSON
+
+# yq (YAML processor)
+$ yq . file.yaml                 # Pretty print YAML
+$ yq e '.foo.bar' file.yaml      # Extract nested field
+
+# btop (graphical top)
+$ btop                           # System monitor
+$ btop -t                        # Theme selector
+
+# duf (disk usage)
+$ duf                            # Fancy df alternative
+$ duf -hide special,loops        # Hide clutter
+
+# procs (modern ps)
+$ procs                          # List processes with icons
+$ procs -s cpu                   # Sort by CPU
+
+# dust (disk usage visualizer)
+$ dust                           # Like du but prettier
+
+# zoxide (jump around faster)
+$ z path                         # Jump to frequently used dir
+$ zoxide add ~/projects          # Manually add dir
+$ z -                          # Jump to last dir
+
+# bottom (btm)
+$ btm                            # Yet another system monitor
+$ btm --basic                   # Basic mode
+
+# hyperfine (benchmarking)
+$ hyperfine 'curl https://x'     # Benchmark command
+$ hyperfine 'bat file' 'cat file' # Compare tools
+
+# glow (markdown previewer)
+$ glow README.md                 # View markdown in terminal
+$ glow -p                        # Plain mode
+
+# httpie (curl with UX)
+$ http GET https://api.x         # Simple GET
+$ http POST https://x name=foo   # Simple POST
+
+# cheat.sh (community cheats)
+$ curl cheat.sh/tar              # View tar cheatsheet
+$ curl cheat.sh/awk/:learn       # Learn awk interactively
+
+# extras & goodies
+$ neofetch                       # System info bling
+$ archey                         # Alt system ASCII display
+$ cava                           # Audio visualizer
+$ pipes.sh                       # Terminal pipes animation
+$ cmatrix                        # Matrix-style rain
+$ hollywood                     # Fake hacker terminal
+
+> Your terminal isn't just a tool — it's a stage. Equip it like a ricer, command like a god.

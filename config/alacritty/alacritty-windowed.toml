@@ -1,0 +1,20 @@
+[window]
+decorations = "full"
+opacity = 0.85
+padding = { x = 10, y = 5 }
+dynamic_padding = true
+
+[font]
+size = 12.0
+
+[colors.primary]
+background = "#000000"
+foreground = "#e0e0e0"
+
+[colors.cursor]
+text = "#000000"
+cursor = "#e0e0e0"
+
+[colors.selection]
+text = "#000000"
+background = "#ffffff"

@@ -1,0 +1,72 @@
+# Text Tools Cheat Sheet – Terminal Text-Fu
+
+# cat / head / tail
+$ cat file.txt                   # Output file
+$ head file.txt                  # First 10 lines
+$ tail file.txt                  # Last 10 lines
+$ tail -f file.log               # Follow new log lines
+
+# cut / paste / split
+$ cut -d':' -f1 /etc/passwd      # Extract field 1
+$ cut -c1-5 file                 # First 5 characters
+$ paste file1 file2              # Merge line-by-line
+$ split -l 1000 bigfile.txt part# Split by line count
+
+# sort / uniq
+$ sort file.txt                  # Sort lines
+$ sort -r file.txt               # Reverse sort
+$ sort file | uniq               # Remove duplicates
+$ uniq -c                        # Count unique occurrences
+
+# tr / sed / awk
+$ tr 'a-z' 'A-Z'                 # Uppercase conversion
+$ tr -d '\r'                     # Remove carriage returns
+$ sed 's/foo/bar/g' file         # Replace foo with bar
+$ sed -n '5,10p' file            # Print lines 5 to 10
+$ awk '{print $1}' file          # Print first column
+$ awk -F":" '{print $2}' file   # Custom field delimiter
+
+# grep / egrep / fgrep
+$ grep foo file                  # Match 'foo'
+$ grep -i foo file               # Case-insensitive
+$ grep -r TODO src/              # Recursive search
+$ grep -v bar file               # Exclude matches
+$ egrep 'foo|bar' file           # Extended regex OR
+
+# wc / nl / fmt / fold
+$ wc file.txt                    # Word/line/char count
+$ nl file.txt                    # Add line numbers
+$ fmt -w 60 file.txt             # Wrap text to 60 cols
+$ fold -w 80 file.txt            # Hard wrap at 80 cols
+
+# tee / xargs
+$ echo "log" | tee file          # Output + save
+$ ls *.log | xargs grep ERROR    # Grep all log files
+$ find . -name '*.txt' | xargs cat
+
+# column / pr
+$ column -t -s, file.csv         # Format CSV into table
+$ pr -n file                     # Print with line numbers
+
+# base64 / sha / md5
+$ echo foo | base64              # Encode
+$ echo Zm9v | base64 -d          # Decode
+$ sha256sum file                 # SHA-256 hash
+$ md5sum file                    # MD5 hash
+
+# strings / file / stat
+$ strings binary                 # Show printable text
+$ file something                 # Identify file type
+$ stat file                      # Metadata info
+
+# diff / cmp / comm
+$ diff file1 file2               # Compare line-by-line
+$ cmp file1 file2                # Byte-level diff
+$ comm file1 file2               # Compare sorted files
+
+# iconv / dos2unix / file conv
+$ iconv -f ISO-8859-1 -t UTF-8 file
+$ dos2unix script.sh             # Convert line endings
+$ unix2dos file.txt              # DOS-style output
+
+> Text processing is where bash gets poetic — each line, a haiku waiting to be parsed.

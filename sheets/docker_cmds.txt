@@ -1,0 +1,84 @@
+# Docker Command Cheat Sheet - For Terminal Architects
+
+# Basics
+$ docker version                       # Show version
+$ docker info                          # Show system info
+$ docker help                          # Show help
+
+# Images
+$ docker pull alpine                   # Download image
+$ docker images                        # List images
+$ docker rmi image                     # Remove image
+$ docker build -t myimage .            # Build from Dockerfile
+
+# Containers
+$ docker run -it ubuntu bash           # Interactive shell
+$ docker run -d nginx                  # Detached mode
+$ docker ps                            # Running containers
+$ docker ps -a                         # All containers
+$ docker start container               # Start stopped container
+$ docker stop container                # Stop running container
+$ docker restart container             # Restart container
+$ docker rm container                  # Remove container
+
+# Exec & Attach
+$ docker exec -it container bash       # Run inside container
+$ docker attach container              # Attach to running
+
+# Logs
+$ docker logs container                # Show logs
+$ docker logs -f container             # Follow logs
+
+# Networking
+$ docker network ls                    # List networks
+$ docker network inspect net           # Inspect network
+$ docker network create net            # Create new network
+
+# Volumes
+$ docker volume ls                     # List volumes
+$ docker volume create name            # Create volume
+$ docker volume inspect name           # Inspect volume
+$ docker volume rm name                # Delete volume
+
+# Copy Files
+$ docker cp file container:/path       # Host → Container
+$ docker cp container:/file ./         # Container → Host
+
+# Dockerfiles
+# -------------------------
+FROM ubuntu:20.04
+RUN apt update && apt install -y curl
+CMD ["bash"]
+
+# Images from Dockerfiles
+$ docker build -t myimage .
+$ docker run -it myimage
+
+# Tagging
+$ docker tag img user/repo:tag         # Tag image
+$ docker push user/repo:tag            # Push image
+$ docker pull user/repo:tag            # Pull image
+
+# Cleanup
+$ docker system prune                  # Remove unused data
+$ docker container prune               # Remove stopped containers
+$ docker image prune                   # Remove unused images
+
+# Inspect
+$ docker inspect container             # Detailed info
+$ docker top container                 # Running processes
+$ docker stats                         # Live resource usage
+
+# Compose
+$ docker-compose up                    # Start services
+$ docker-compose down                  # Stop/remove
+$ docker-compose build                 # Rebuild
+$ docker-compose logs -f               # Tail logs
+
+# Advanced
+$ docker run --rm -v $PWD:/data busybox ls /data
+$ docker run --network host alpine ping 1.1.1.1
+$ docker run --entrypoint sh image     # Override entrypoint
+$ docker diff container                # Show changes to FS
+
+> Docker is the window manager of the cloud: minimal, modular, and pure shell aesthetic.

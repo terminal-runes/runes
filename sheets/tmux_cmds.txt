@@ -1,0 +1,76 @@
+# Tmux Commands Cheat Sheet — For Pane-Slinging Ninjas
+
+# Basics
+$ tmux                        # Start new session
+$ tmux new -s name           # Start named session
+$ tmux ls                    # List sessions
+$ tmux a                     # Attach last session
+$ tmux a -t name             # Attach named session
+$ tmux kill-session -t name  # Kill session
+
+# Prefix key (default)
+> Ctrl+b                     # Send tmux command prefix
+
+# Detach / Reload / Kill
+> d                          # Detach
+> :source-file ~/.tmux.conf  # Reload config
+> :kill-server               # Kill tmux entirely
+
+# Sessions
+> s                          # List sessions
+> $                          # Rename session
+> :rename-session newname    # Rename current session
+
+# Windows
+> c                          # New window
+> ,                          # Rename window
+> w                          # List windows
+> &                          # Kill current window
+> n / p                      # Next / previous window
+> 0-9                        # Jump to window #
+
+# Panes
+> %                          # Split vertical
+> "                          # Split horizontal
+> o                          # Switch to next pane
+> q                          # Show pane numbers
+> x                          # Kill current pane
+> !                          # Break pane to window
+
+# Resizing Panes
+> Ctrl+b :resize-pane -D 5   # Resize down 5 lines
+> Ctrl+b :resize-pane -L 5   # Resize left
+> Ctrl+b :resize-pane -R 5   # Resize right
+> Ctrl+b :resize-pane -U 5   # Resize up
+
+# Synchronize Panes
+> :setw synchronize-panes on   # Mirror input to all panes
+> :setw synchronize-panes off  # Stop mirroring
+
+# Buffers & Copy Mode
+> [                          # Enter copy mode
+> Space                     # Start selection
+> Enter                     # Copy selection
+> ]                         # Paste
+> :show-buffer              # Show buffer
+
+# Scrolling
+> [ then ↑/↓/PgUp/PgDn      # Scroll in copy mode
+> /                         # Search in scrollback
+
+# Misc
+> t                          # Show clock
+> ?                          # Help menu (bindings)
+> :set-option -g mouse on    # Enable mouse support
+
+# Scripting
+$ tmux send-keys "cmd" C-m   # Send command to pane
+$ tmux splitw -h "htop"      # Open htop in split
+$ tmux neww "vim ~/.vimrc"   # Open new window
+
+# Pro Tips
+$ tmux -f alt.conf           # Use custom config
+$ tmux rename-window "sys"   # Name your dashboards
+$ tmux list-keys             # List all key bindings
+
+> tmux is a tiling window manager that lives inside your terminal. Mastery is one prefix away.

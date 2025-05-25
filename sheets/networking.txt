@@ -1,0 +1,74 @@
+# Networking Commands Cheat Sheet – For Shell-Savvy Snoopers
+
+# Interfaces & IP
+$ ip a                          # Show all interfaces and IPs
+$ ip link                       # Show interfaces only
+$ ip addr show dev eth0         # Show IP on eth0
+$ ip route                      # Show routing table
+$ hostname -I                   # Show local IPs
+$ nmcli                         # NetworkManager CLI
+
+# Connectivity
+$ ping 1.1.1.1                  # Ping test
+$ ping -c 4 google.com          # Ping with count
+$ traceroute google.com         # Trace packet path
+$ mtr google.com                # Better traceroute (if installed)
+$ curl ifconfig.me              # Get external IP
+
+# DNS
+$ nslookup example.com          # Query DNS
+$ dig example.com               # Detailed DNS query
+$ host example.com              # DNS lookup
+$ resolvectl status             # Check resolver config (systemd)
+
+# Sockets
+$ ss -tuln                      # Show listening ports
+$ ss -pant                      # All connections with PID
+$ lsof -i :22                   # What's using port 22?
+$ netstat -tulpn                # (Legacy) listening services
+
+# Scanning & Probing
+$ nmap -sS target               # Stealth SYN scan
+$ nmap -sV target               # Service/version detection
+$ nmap -O target                # OS detection
+$ nc -zv host port              # Port check
+$ telnet host port              # Test TCP connection
+$ curl -v host:port             # HTTP(S) probe
+
+# Downloads
+$ wget URL                      # Simple file download
+$ curl -LO URL                  # Download with original name
+$ aria2c URL                    # Fast download (multi-thread)
+
+# HTTP APIs
+$ curl httpbin.org/get          # HTTP GET
+$ curl -X POST -d 'a=1' URL     # POST with data
+$ curl -I URL                   # Show headers only
+$ curl -H 'Header: val' URL     # Custom header
+$ http URL                     # HTTPie alt (if installed)
+
+# Firewalls (iptables/nftables)
+$ sudo iptables -L -n -v        # List rules
+$ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+$ sudo iptables -A INPUT -j DROP
+$ sudo nft list ruleset         # nftables full output
+
+# Wireless
+$ iwconfig                      # Wireless interfaces
+$ iw dev                        # Newer wireless info
+$ nmcli dev wifi list           # Show available Wi-Fi
+$ nmcli dev wifi connect SSID   # Connect via CLI
+
+# Tunnels
+$ ssh -L 8080:localhost:80 user@host  # Local forward
+$ ssh -D 1080 user@host         # Dynamic SOCKS proxy
+$ ssh -R 9090:localhost:22 host # Remote port forward
+
+# Misc
+$ arp -a                        # ARP table
+$ whois domain.com              # WHOIS lookup
+$ curl wttr.in                  # Weather in the terminal
+$ curl cip.cc                   # External IP (alt)
+$ sudo ethtool eth0             # NIC info
+
+> Networking isn’t just packets. It’s peeking into the soul of the system.

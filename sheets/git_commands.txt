@@ -1,0 +1,90 @@
+# Git Commands Cheat Sheet - for Ricers and Terminal Artists
+
+# Initialization & Config
+$ git init                     # Initialize a repo
+$ git config --global user.name "Name"
+$ git config --global user.email "you@example.com"
+$ git config --list            # Show global config
+$ git status                   # Show working dir status
+$ git log                      # View commit history
+
+# Cloning & Remote
+$ git clone URL                # Clone remote repo
+$ git remote -v                # List remotes
+$ git remote add origin URL    # Add remote
+$ git fetch                    # Get latest without merging
+$ git pull                     # Fetch and merge
+$ git push                     # Push to remote
+$ git push -u origin main      # Set upstream for push
+
+# Branches
+$ git branch                   # List branches
+$ git branch new-branch        # Create branch
+$ git checkout branch          # Switch branches
+$ git switch -c new-branch     # Create and switch
+$ git merge branch             # Merge branch
+$ git branch -d branch         # Delete branch
+
+# Commits
+$ git add file                 # Stage file
+$ git add .                    # Stage all changes
+$ git commit -m "Message"      # Commit with message
+$ git commit --amend           # Edit last commit
+$ git reset HEAD file          # Unstage file
+$ git diff                     # View unstaged changes
+$ git diff --staged            # View staged changes
+
+# Logs & Diffs
+$ git log --oneline            # Compact log
+$ git log --graph              # ASCII tree log
+$ git show COMMIT              # Show commit diff
+$ git blame file               # Who changed what
+$ git shortlog -sn             # Summary by author
+
+# Tags
+$ git tag                      # List tags
+$ git tag v1.0                 # Create tag
+$ git tag -d v1.0              # Delete tag
+$ git push origin v1.0         # Push tag
+$ git push --tags              # Push all tags
+
+# Stashing
+$ git stash                    # Save changes
+$ git stash list               # Show stashes
+$ git stash pop                # Restore stash
+$ git stash drop               # Delete stash
+
+# Reset, Revert, Clean
+$ git reset --hard             # Danger: full reset
+$ git revert COMMIT            # Revert commit
+$ git clean -fd                # Delete untracked files/dirs
+
+# Cherry-pick & Rebase
+$ git cherry-pick COMMIT       # Apply commit from elsewhere
+$ git rebase branch            # Rebase onto branch
+$ git rebase -i HEAD~3         # Interactive rebase
+
+# Submodules
+$ git submodule add URL path   # Add submodule
+$ git submodule update --init  # Init submodules
+$ git submodule foreach git pull origin master
+
+# Aliases
+$ git config alias.st status
+$ git config alias.co checkout
+$ git config alias.br branch
+$ git config alias.ci commit
+$ git config alias.lg "log --oneline --graph --all"
+
+# Ignore & Attributes
+$ echo ".env" >> .gitignore     # Ignore files
+$ git check-ignore -v file     # Test ignore
+$ echo "*.jpg binary" > .gitattributes
+
+# Tips for Ricers
+# --------------------------
+$ git log --color --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+$ git diff --color-words       # Highlight changed words
+$ git config --global color.ui auto
+
+> Git is the ricer's canvas — version control is your undo button for life.
