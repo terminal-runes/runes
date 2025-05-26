@@ -4,6 +4,12 @@
 
 A clean, terminal-based cheat sheet scroller with a styled Alacritty HUD.
 
+## Preview
+
+![Runes default sheet](assets/runes-default.png)
+
+![Runes browse mode](assets/runes-browse.gif)
+
 ## Features
 
 * Alacritty-powered floating terminal UI
