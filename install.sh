@@ -16,7 +16,7 @@ if ! command -v alacritty &> /dev/null; then
   echo "Install it manually using your package manager:"
   echo "  sudo pacman -S alacritty     # Arch"
   echo "  sudo apt install alacritty   # Debian/Ubuntu"
-  echo "  brew install alacritty       # macOS"
+  echo "  sudo dnf install       # Fedora"
   exit 1
 else
   echo "[✓] Alacritty found."
@@ -64,4 +64,4 @@ echo "Run 'runes' to launch with a transparent borderless window."
 echo "Run 'runes-windowed' to launch with standard window decorations."
 echo "Run 'runes-browse' to interactively choose a cheat sheet."
 echo "💡 Tip: To move the borderless window, use your window manager's move shortcut."
-echo "   Examples: Alt + Drag (Linux), Alt+F7 (XFCE), or Super + Drag (KDE/GNOME)"
+echo "   Examples: Alt + Drag, Alt + F7, or Super + Drag (KDE/GNOME)"
