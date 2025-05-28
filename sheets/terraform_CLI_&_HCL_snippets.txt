@@ -1,0 +1,254 @@
+# Terraform CLI & HCL snippets Cheat Sheet – Infra-As-Code Incantations
+
+# Init & Setup
+
+$ terraform init
+$ terraform init -upgrade
+$ terraform validate
+$ terraform fmt
+$ terraform version
+$ terraform providers
+
+> Start by blessing your directory with 'init'.
+
+# Planning & Applying
+
+$ terraform plan
+$ terraform plan -out=tfplan
+$ terraform apply
+$ terraform apply tfplan
+$ terraform destroy
+
+> Plan before you unleash chaos.
+
+# State Management
+
+$ terraform state list
+$ terraform state show aws_instance.web
+$ terraform state pull
+$ terraform state push statefile.tfstate
+$ terraform state rm aws_instance.old
+$ terraform state mv aws_instance.old aws_instance.new
+
+> State is sacred—handle with care.
+
+# Workspaces
+
+$ terraform workspace list
+$ terraform workspace new dev
+$ terraform workspace select dev
+$ terraform workspace delete dev
+
+> Like git branches for your infra.
+
+# Output & Variables
+
+$ terraform output
+$ terraform output ip_address
+$ terraform output -json
+
+    variable "region" {
+      default = "us-east-1"
+    }
+
+    output "ip" {
+      value = aws_instance.web.public_ip
+    }
+
+> Outputs are your infra's last words.
+
+# Environment Variables
+
+$ export TF_LOG=DEBUG
+$ export TF_VAR_region=us-west-2
+$ export TF_CLI_ARGS_plan="-lock=false"
+
+> Shell magic to shape terraform’s behavior.
+
+# HCL Basics
+
+    provider "aws" {
+      region = "us-east-1"
+    }
+
+    resource "aws_instance" "web" {
+      ami           = "ami-12345678"
+      instance_type = "t2.micro"
+    }
+
+> It's not JSON, it's poetry.
+
+# File Layout
+
+    .
+    ├── main.tf
+    ├── variables.tf
+    ├── outputs.tf
+    └── terraform.tfvars
+
+> Convention over confusion.
+
+# Modules
+
+$ terraform get
+$ terraform get -update
+$ terraform init
+
+    module "vpc" {
+      source = "./modules/vpc"
+    }
+
+> Group your spells into reusable scrolls.
+
+# Backend Configuration
+
+    terraform {
+      backend "s3" {
+        bucket = "my-tf-state"
+        key    = "env/dev/terraform.tfstate"
+        region = "us-west-2"
+      }
+    }
+
+> Remote backends = shared reality.
+
+# Provisioners
+
+    resource "null_resource" "example" {
+      provisioner "local-exec" {
+        command = "echo hello"
+      }
+    }
+
+> Sometimes you just need a bash wand.
+
+# Data Sources
+
+    data "aws_ami" "latest" {
+      most_recent = true
+      owners      = ["amazon"]
+      filter {
+        name   = "name"
+        values = ["amzn2-ami-hvm*"]
+      }
+    }
+
+> Read before you write.
+
+# Conditional Logic
+
+    resource "aws_instance" "web" {
+      count = var.enable ? 1 : 0
+    }
+
+> Terraform supports ifs. No elses though.
+
+# Loops & Maps
+
+    variable "subnets" {
+      type = list(string)
+    }
+
+    resource "aws_subnet" "this" {
+      for_each = toset(var.subnets)
+      cidr_block = each.value
+    }
+
+> for_each: The Swiss Army knife.
+
+# Lifecycle Meta-Args
+
+    resource "aws_instance" "web" {
+      lifecycle {
+        prevent_destroy = true
+        ignore_changes  = [tags]
+      }
+    }
+
+> Protect thy sacred cattle.
+
+# Dependencies
+
+    depends_on = [aws_vpc.main]
+
+> When order matters, declare it.
+
+# Sensitive Values
+
+    variable "secret" {
+      type      = string
+      sensitive = true
+    }
+
+    output "secret" {
+      value     = var.secret
+      sensitive = true
+    }
+
+> Secrets don’t belong in plaintext.
+
+# Importing Resources
+
+$ terraform import aws_instance.web i-1234567890abcdef0
+
+> Adopt infra like stray cats.
+
+# Debugging & Logs
+
+$ TF_LOG=DEBUG terraform apply
+$ tail -f terraform.log
+
+> When in doubt, log it out.
+
+# Locking & Concurrency
+
+$ terraform plan -lock=false
+$ terraform apply -lock-timeout=60s
+
+> Lock contention is real. Fight back.
+
+# Targeted Operations
+
+$ terraform plan -target=aws_instance.web
+$ terraform apply -target=module.vpc
+
+> Surgical precision for broken builds.
+
+# Clean Up
+
+$ rm -rf .terraform
+$ rm terraform.tfstate
+$ rm terraform.tfstate.backup
+
+> When nukes are the only way.
+
+# Misc & Meta
+
+$ terraform console
+$ terraform graph | dot -Tpng > graph.png
+
+> Visualize the madness.
+
+# Terraform Cloud CLI
+
+$ terraform login
+$ terraform logout
+$ terraform cloud
+
+> Remote state meets team play.
+
+# Override Files
+
+    terraform.tfvars
+    terraform.override.tf
+    *.auto.tfvars
+
+> Override responsibly.
+
+# Random Utilities
+
+    resource "random_pet" "name" {}
+
+> Infra needs friends too.
+
+> Apply complete. Resources: 42 added, 0 changed, 1 destroyed.
