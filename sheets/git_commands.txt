@@ -1,4 +1,4 @@
-# Git Commands Cheat Sheet - for Ricers and Terminal Artists
+# Git Commands Cheat Sheet - for Terminal Artists
 
 # Initialization & Config
 $ git init                     # Initialize a repo

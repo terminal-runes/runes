@@ -1,0 +1,137 @@
+# Kubernetes Cheat Sheet – Cluster Conjurer's Quick Spells
+
+# Cluster Basics
+$ kubectl version --short
+$ kubectl cluster-info
+$ kubectl get componentstatuses
+$ kubectl api-resources
+$ kubectl get nodes
+$ kubectl describe node <node>
+$ kubectl cordon <node>
+$ kubectl drain <node> --ignore-daemonsets
+$ kubectl uncordon <node>
+
+# Namespace Ops
+$ kubectl get ns
+$ kubectl create ns dev
+$ kubectl delete ns test
+$ kubectl config set-context --current --namespace=dev
+$ kubectl get all -n kube-system
+$ kubectl label ns dev team=backend
+$ kubectl annotate ns dev owner=alice
+$ kubectl describe ns dev
+
+# Pod Lifecycle
+$ kubectl run nginx --image=nginx --restart=Never
+$ kubectl get pods
+$ kubectl get pod nginx -o wide
+$ kubectl describe pod nginx
+$ kubectl delete pod nginx
+$ kubectl exec -it nginx -- /bin/sh
+$ kubectl attach -it <pod> -c <container>
+$ kubectl port-forward pod/nginx 8080:80
+$ kubectl cp nginx:/var/log/nginx/access.log ./access.log
+
+# Deployment Management
+$ kubectl create deploy web --image=nginx
+$ kubectl get deploy
+$ kubectl edit deploy web
+$ kubectl scale deploy web --replicas=4
+$ kubectl rollout status deploy/web
+$ kubectl rollout history deploy/web
+$ kubectl rollout undo deploy/web --to-revision=2
+$ kubectl delete deploy web
+$ kubectl set image deploy/web nginx=nginx:1.27
+
+# ReplicaSets & DaemonSets
+$ kubectl get rs
+$ kubectl describe rs <rs>
+$ kubectl delete rs <rs>
+$ kubectl get ds
+$ kubectl describe ds <daemonset>
+$ kubectl set ds image <ds> <container>=<image>:tag
+$ kubectl rollout restart ds/<ds>
+$ kubectl patch ds <ds> -p '{"spec":{"template":{"spec":{"hostPID":true}}}}'
+
+# Service & Networking
+$ kubectl expose deploy web --type=ClusterIP --port=80
+$ kubectl get svc
+$ kubectl describe svc web
+$ kubectl patch svc web -p '{"spec":{"type":"LoadBalancer"}}'
+$ kubectl delete svc web
+$ kubectl get endpoints web
+$ kubectl get ingress
+$ kubectl describe ingress web
+$ kubectl port-forward svc/web 8080:80
+
+# ConfigMaps & Secrets
+$ kubectl create configmap app-cfg --from-file=config.yaml
+$ kubectl get cm
+$ kubectl describe cm app-cfg
+$ kubectl create secret generic db-creds --from-literal=USER=alice --from-literal=PASS=pa55
+$ kubectl get secret
+$ kubectl describe secret db-creds
+$ kubectl delete cm app-cfg
+$ kubectl delete secret db-creds
+$ kubectl create secret docker-registry regcred --docker-username=usr --docker-password=pw
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: demo-cm
+    data:
+      ENV: prod
+
+# Scaling & Autoscaling
+$ kubectl get hpa
+$ kubectl autoscale deploy web --min=2 --max=10 --cpu-percent=60
+$ kubectl describe hpa web
+$ kubectl delete hpa web
+$ kubectl set resources deploy web -c nginx --limits=cpu=500m,memory=256Mi
+$ kubectl top pod
+$ kubectl top node
+$ kubectl top deploy
+
+# Scheduling & Taints
+$ kubectl taint nodes <node> key=value:NoSchedule
+$ kubectl taint nodes <node> key-
+$ kubectl label nodes <node> zone=us-east
+$ kubectl get nodes --show-labels
+$ kubectl describe pod <pod> | grep -i node
+$ kubectl get pods -o=custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
+$ kubectl edit deploy web  # add nodeSelector or affinity
+
+# Debugging & Logs
+$ kubectl logs nginx
+$ kubectl logs nginx -c sidecar
+$ kubectl logs -f deploy/web
+$ kubectl logs --previous nginx
+$ kubectl get events --sort-by=.metadata.creationTimestamp
+$ kubectl describe pod nginx
+$ kubectl debug node/<node> --image=busybox
+$ kubectl run -it tmp --rm --image busybox -- sh
+$ kubectl get pod -o yaml nginx > nginx.yaml
+$ kubectl diff -f nginx.yaml
+
+# Storage & Volumes
+$ kubectl get pv
+$ kubectl get pvc
+$ kubectl describe pvc data-vol
+$ kubectl create -f pvc.yaml
+$ kubectl delete pvc data-vol
+$ kubectl edit pvc data-vol  # change storage size
+$ kubectl get sc
+$ kubectl describe sc standard
+
+# Helm & Extras
+$ helm repo add stable https://charts.helm.sh/stable
+$ helm search repo nginx
+$ helm install web stable/nginx
+$ helm list
+$ helm upgrade web stable/nginx --set image.tag=1.27
+$ helm rollback web 1
+$ helm uninstall web
+$ helm template web stable/nginx > manifest.yaml
+$ kubectl apply -f manifest.yaml
+
+> Pods drained, clusters gained—keep calm and kube on.
+
