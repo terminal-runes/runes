@@ -15,7 +15,6 @@ A transparent, terminal-based cheat sheet scroller with a styled Alacritty HUD.
 - Alacritty-powered floating terminal UI
 - Modular cheat sheet library (git, vim, docker, etc.)
 - Borderless and windowed launcher modes
-- One-line install with no external dependencies
 
 ## Installation
 
