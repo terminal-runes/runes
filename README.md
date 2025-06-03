@@ -95,12 +95,6 @@ Cheat sheets live in `sheets/*.txt`. Format is plain text, organized with headin
 
 Default styling is configured in `config/alacritty/alacritty.toml`.
 
-## Contribute
-
-- Fork the project
-- Add new `.txt` sheets to `sheets/`
-- Keep entries short, focused, and relevant to terminal workflows
-
 ---
 
 MIT licensed.
